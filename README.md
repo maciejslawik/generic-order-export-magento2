@@ -1,5 +1,5 @@
-[![Latest Stable Version](https://poser.pugx.org/mslwk/module-generic-generic-order-export/v/stable)](https://packagist.org/packages/mslwk/module-generic-generic-order-export)
-[![License](https://poser.pugx.org/mslwk/module-generic-generic-order-export/license)](https://packagist.org/packages/mslwk/module-generic-generic-order-export)
+[![Latest Stable Version](https://poser.pugx.org/mslwk/module-generic-order-export/v/stable)](https://packagist.org/packages/mslwk/module-generic-order-export)
+[![License](https://poser.pugx.org/mslwk/module-generic-order-export/license)](https://packagist.org/packages/mslwk/module-generic-order-export)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/maciejslawik/generic-order-export-magento2/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/maciejslawik/generic-order-export-magento2/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/maciejslawik/generic-order-export-magento2/badges/build.png?b=master)](https://scrutinizer-ci.com/g/maciejslawik/generic-order-export-magento2/build-status/master)
 [![Total Downloads](https://poser.pugx.org/mslwk/module-generic-order-export/downloads)](https://packagist.org/packages/mslwk/module-generic-order-export)
