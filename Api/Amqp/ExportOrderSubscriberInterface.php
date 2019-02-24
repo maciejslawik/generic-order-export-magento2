@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace MSlwk\GenericOrderExport\Api\Amqp;
 
+
 /**
  * Interface ExportOrderSubscriberInterface
  * @package MSlwk\GenericOrderExport\Api\Amqp

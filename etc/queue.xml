@@ -6,7 +6,10 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue.xsd">
-
-
-
+    <broker topic="exportNewOrdersTopic" type="amqp" exchange="magento">
+        <queue consumer="exportNewOrdersConsumer"
+               name="exportNewOrdersQueue"
+               handler="MSlwk\GenericOrderExport\Api\Amqp\ExportOrderSubscriberInterface::processMessage"
+               consumerInstance="Magento\Framework\MessageQueue\Consumer"/>
+    </broker>
 </config>

@@ -1,0 +1,3 @@
+"Order Export","Order Export"
+"Enable async export","Enable async export"
+"If enabled, Magento queue will be used to export orders","If enabled, Magento queue will be used to export orders"

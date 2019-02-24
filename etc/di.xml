@@ -7,6 +7,68 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
+    <!--Preference section-->
 
+    <preference for="MSlwk\GenericOrderExport\Api\Amqp\ExportOrderMessageInterface"
+                type="MSlwk\GenericOrderExport\Model\Amqp\ExportOrderMessage" />
+
+    <preference for="MSlwk\GenericOrderExport\Api\Amqp\ExportOrderSubscriberInterface"
+                type="MSlwk\GenericOrderExport\Model\Amqp\ExportOrderSubscriber" />
+
+    <preference for="MSlwk\GenericOrderExport\Api\ConfigProviderInterface"
+                type="MSlwk\GenericOrderExport\Model\ConfigProvider" />
+
+    <preference for="MSlwk\GenericOrderExport\Api\OrderExportHandlerInterface"
+                type="MSlwk\GenericOrderExport\Model\OrderExportHandler" />
+
+    <!--End of preference section-->
+
+    <!--Constructor injection section-->
+
+    <type name="MSlwk\GenericOrderExport\Model\Amqp\ExportOrderSubscriber">
+        <arguments>
+            <argument name="logger" xsi:type="object">MSlwk\GenericOrderExport\Logger\VirtualExportOrderSubscriberLogger</argument>
+        </arguments>
+    </type>
+
+    <type name="MSlwk\GenericOrderExport\Model\OrderExportHandler">
+        <arguments>
+            <argument name="logger" xsi:type="object">MSlwk\GenericOrderExport\Logger\VirtualOrderExportHandlerLogger</argument>
+        </arguments>
+    </type>
+
+    <!--End of construction injection section-->
+
+    <!--Virtual type section-->
+
+    <virtualType name="MSlwk\GenericOrderExport\Logger\VirtualExportOrderSubscriberLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers"  xsi:type="array">
+                <item name="error" xsi:type="object">MSlwk\GenericOrderExport\Logger\Handler\VirtualExportOrderSubscriberLoggerHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="MSlwk\GenericOrderExport\Logger\Handler\VirtualExportOrderSubscriberLoggerHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName"  xsi:type="string">/var/log/order_export/subscriber_error.log</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="MSlwk\GenericOrderExport\Logger\VirtualOrderExportHandlerLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers"  xsi:type="array">
+                <item name="error" xsi:type="object">MSlwk\GenericOrderExport\Logger\Handler\VirtualOrderExportHandlerLoggerHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="MSlwk\GenericOrderExport\Logger\Handler\VirtualOrderExportHandlerLoggerHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName"  xsi:type="string">/var/log/order_export/handler_error.log</argument>
+        </arguments>
+    </virtualType>
+
+    <!--End of virtual type section-->
 
 </config>

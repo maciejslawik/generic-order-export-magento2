@@ -16,5 +16,8 @@ namespace MSlwk\GenericOrderExport\Api;
  */
 interface ConfigProviderInterface
 {
-
+    /**
+     * @return bool
+     */
+    public function isExportAsync(): bool;
 }

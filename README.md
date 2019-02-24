@@ -6,11 +6,10 @@
 
 # Magento 2 Generic Order Export module #
 
-The extension allows to handle exporting new orders automatically on creation. It can export
-orders either synchronously or asynchronously. 
-
-You only have to implement a method responsible for the actual export to the 3rd party service
-you require integration with.
+The extension provides a simple API for exporting new orders to a 3rd-party service. You can use it as a base for your
+specialised module. By default it exports an order after invoice creation.
+By default it used RabbitMQ to send the orders asynchronously for smoother experience. This feature can be disabled via
+backend panel.
 
 ### Installation ###
 
@@ -38,8 +37,30 @@ following commands:
  
 ## Usage ##
 
-TO UPDATE
+To use this module you are required to do several things. You are strongly advised to create your own module extending
+contents of this one.
 
+1. 
+    Create your own implementation of the ``MSlwk\GenericOrderExport\Api\OrderExportServiceInterface`` responsible
+    for the actual export process and add a preference to your ``etc/di.xml`` like this:
+    
+    ```
+       <preference for="MSlwk\GenericOrderExport\Api\OrderExportServiceInterface"
+                   type="You\YourModel\Model\YourOrderExportService" />
+    ```
+
+2.
+    If you don't want to use RabbitMQ to queue the export process go to
+    ``Stores -> Configuration -> Sales -> Sales -> Order Export -> Enable async export``
+    
+3. 
+    If you want to export your orders under different conditions disable the default observer responsible for exporting
+    the orders (``mslwk_order_export_sales_order_invoice_register``) via your ``etc/events.xml``. After that you have to
+    create your own plugin/observer/whatever to export the orders. Go to ``MSlwk\GenericOrderExport\Observer\ExportOrderAfterInvoiceRegistered``
+    for reference. 
+        
+4. If you need a fallback mechanism in case of export failure you have to implement it yourself to reflect your needs.
+        
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/maciejslawik/generic-order-export-magento2/tags). 

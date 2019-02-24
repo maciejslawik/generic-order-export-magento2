@@ -10,8 +10,6 @@ declare(strict_types=1);
 
 namespace MSlwk\GenericOrderExport\Api\Amqp;
 
-use Magento\Sales\Api\Data\OrderInterface;
-
 /**
  * Interface ExportOrderMessageInterface
  * @package MSlwk\GenericOrderExport\Api\Amqp
@@ -19,7 +17,13 @@ use Magento\Sales\Api\Data\OrderInterface;
 interface ExportOrderMessageInterface
 {
     /**
-     * @return OrderInterface
+     * @return string
      */
-    public function getOrder(): OrderInterface;
+    public function getOrderId(): string;
+
+    /**
+     * @param string $orderId
+     * @return void
+     */
+    public function setOrderId(string $orderId): void;
 }
